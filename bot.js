@@ -18,6 +18,20 @@ client.on('message', msg => {
     if (msg.content.startsWith(`${prefix}hi`)) {
         msg.channel.send('Why hello there!')
     }
+    if (msg.content.startsWith(`${prefix}leaderboards`)) {
+        let aftermessage = msg.content.slice(13);
+        let isblank = false;
+        for (let i = 0; i < aftermessage.length; i++) {
+            if (i !== ' ') {
+                isblank = true;
+            }
+        }
+        if (isblank === false) {
+            msg.channel.send('Please specify a leaderboard category, such as 5x5, 6x6, or 10x10.')
+        } else {
+            msg.channel.send('This category does not exist! (yet)');
+        }
+    }
     if (msg.content.startsWith(`${prefix}leaderboards 5x5`)) {
         msg.channel.send('1. ZManGames - 8.100\n2. David Jiang - 9.002\n3. Dawid Wojcik - 9.226\n4. no name guy - 11.772\n5. Carykh - 12.346')
     }
