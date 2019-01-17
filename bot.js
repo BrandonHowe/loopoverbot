@@ -113,7 +113,9 @@ var welcomeMsgs = [
     'Welcome to the loopzone.',
     'Welcome to the loopity scoop.',
     'Welcome new looper.',
-    'Welcome Mr. Looper.'
+    'Welcome Mr. Looper.',
+    'Welcome to the loop.',
+    'Welcome, new loop recruit.'
 ]
 
 client.on('guildMemberAdd', member => {
@@ -144,11 +146,15 @@ client.on('message', msg => {
             msg.channel.send('This category does not exist! (yet)');
         }
     }
-    if (msg.content.startsWith(`${prefix}leaderboards 5x5`)) {
-        msg.channel.send('1. ZManGames - 8.100\n2. David Jiang - 9.002\n3. Dawid Wojcik - 9.226\n4. no name guy - 11.772\n5. Carykh - 12.346')
-    }
-    if (msg.content.startsWith(`${prefix}leaderboards 6x6`)) {
-        msg.channel.send('1. ZManGames - 18.400\n2. Dawid Wojcik - 21.592\n3. David Jiang - 22.239\n4. Walker Welch - 26.462\n5. Carykh - 26.864')
+    if (msg.content.startsWith(`${prefix}submit`)) {
+        let aftermessage = msg.content.slice(7);
+        let aftermessageSplit = aftermessage.split(' ');
+        aftermessageSplit.shift();
+        while (aftermessageSplit.length > 4) {
+            aftermessageSplit[aftermessageSplit.length - 2] += aftermessageSplit.pop();
+        }
+        let sendString = "Category: **" + aftermessageSplit[0] + "**\nTime: **" + aftermessageSplit[1] + "**\nCustom name: **" + aftermessageSplit[3] + "**\nEvidence: " + aftermessageSplit[2];
+        member.guild.channels.get('535604615295533096').send(sendString); 
     }
 });
 
