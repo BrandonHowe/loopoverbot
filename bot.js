@@ -108,8 +108,17 @@ client.on('message', message => {
     const command = args.shift().toLowerCase();
 });
 
+var welcomeMsgs = [
+    'Welcome to Loopworld!',
+    'Welcome to the loopzone.',
+    'Welcome to the loopity scoop.',
+    'Welcome new looper.',
+    'Welcome Mr. Looper.'
+]
+
 client.on('guildMemberAdd', member => {
-    member.guild.channels.get('526598754791587852').send("Welcome"); 
+    let randomNum = Math.floor(Math.random() * 5);
+    member.guild.channels.get('526598754791587852').send(welcomeMsgs[randomNum]); 
 });
 
 client.on('message', msg => {
