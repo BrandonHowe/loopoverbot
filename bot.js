@@ -136,6 +136,10 @@ client.on('message', msg => {
         }
         if (isblank === false) {
             msg.channel.send('Please specify a leaderboard category, such as 5x5, 6x6, or 10x10.')
+        } else if (msg.content.startsWith(`${prefix}leaderboards 5x5`)) {
+            msg.channel.send('1. ZManGames - 8.100\n2. David Jiang - 9.002\n3. Dawid Wojcik - 9.226\n4. no name guy - 11.772\n5. Carykh - 12.346')
+        } else if (msg.content.startsWith(`${prefix}leaderboards 6x6`)) {
+            msg.channel.send('1. ZManGames - 18.400\n2. Dawid Wojcik - 21.592\n3. David Jiang - 22.239\n4. Walker Welch - 26.462\n5. Carykh - 26.864')
         } else {
             msg.channel.send('This category does not exist! (yet)');
         }
