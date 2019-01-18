@@ -165,15 +165,16 @@ client.on('message', msg => {
             return;
         }
         let aftermessage = msg.content.slice(7);
-        let aftermessageSplit = aftermessage.split(', ');
+        let aftermessageSplit = aftermessage.split(' ');
         aftermessageSplit.shift();
         while (aftermessageSplit.length > 4) {
             aftermessageSplit[aftermessageSplit.length - 2] += aftermessageSplit.pop();
         }
-        if (aftermessageSplit.length === 4) {
+        console.log(aftermessageSplit);
+        if (aftermessageSplit.length >= 4) {
             var sendString = "Category: **" + aftermessageSplit[0] + "**\nTime: **" + aftermessageSplit[1] + "**\nCustom name: **" + aftermessageSplit[3] + "**\nEvidence: " + aftermessageSplit[2];
-            client.channels.get(535604615295533096).send(sendString);
-        } else if (aftermessageSplit === 3) {
+            console.log(sendString);
+        } else {
             msg.channel.send("You need to provide a link for your evidence!")
         }
         client.channels.get('535604615295533096').send(sendString);
