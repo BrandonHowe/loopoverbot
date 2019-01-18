@@ -148,12 +148,18 @@ client.on('message', msg => {
     }
     if (msg.content.startsWith(`${prefix}submit`)) {
         let aftermessage = msg.content.slice(7);
+        console.log(Attachment[0].url);
         let aftermessageSplit = aftermessage.split(' ');
         aftermessageSplit.shift();
         while (aftermessageSplit.length > 4) {
             aftermessageSplit[aftermessageSplit.length - 2] += aftermessageSplit.pop();
         }
-        let sendString = "Category: **" + aftermessageSplit[0] + "**\nTime: **" + aftermessageSplit[1] + "**\nCustom name: **" + aftermessageSplit[3] + "**\nEvidence: " + aftermessageSplit[2];
+        if (aftermessageSplit.length === 4) {
+            var sendString = "Category: **" + aftermessageSplit[0] + "**\nTime: **" + aftermessageSplit[1] + "**\nCustom name: **" + aftermessageSplit[3] + "**\nEvidence: " + aftermessageSplit[2];
+        } else if (aftermessageSplit === 3) {
+            console.log(Attachment[0].url);
+            var sendString = "Category: **" + aftermessageSplit[0] + "**\nTime: **" + aftermessageSplit[1] + "**\nCustom name: **" + aftermessageSplit[2] + "**";
+        }
         client.channels.get('535604615295533096').send(sendString); 
     }
 });
