@@ -172,6 +172,7 @@ client.on('message', msg => {
         }
         if (aftermessageSplit.length === 4) {
             var sendString = "Category: **" + aftermessageSplit[0] + "**\nTime: **" + aftermessageSplit[1] + "**\nCustom name: **" + aftermessageSplit[3] + "**\nEvidence: " + aftermessageSplit[2];
+            client.channels.get(535604615295533096).send(sendString);
         } else if (aftermessageSplit === 3) {
             msg.channel.send("You need to provide a link for your evidence!")
         }
