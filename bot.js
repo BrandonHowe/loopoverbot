@@ -109,13 +109,13 @@ client.on('message', message => {
 });
 
 var welcomeMsgs = [
-    'Welcome to Loopworld!',
+    'Welcome ',
     'Welcome to the loopzone, ',
     'Welcome, to the loopity scoop.',
     'Welcome new looper.',
     'Welcome, ',
     'Welcome to the loop, ',
-    'Welcome, new loop recruit.'
+    'Welcome, '
 ]
 
 var welcomeMsgsEndings = [
@@ -124,7 +124,7 @@ var welcomeMsgsEndings = [
     ' to the loopity scoop.',
     ' Mr. Looper.',
     '.',
-    ''
+    ' new loop recruit.'
 ]
 
 client.on('guildMemberAdd', member => {
@@ -162,7 +162,7 @@ client.on('message', msg => {
             return;
         }
         let aftermessage = msg.content.slice(7);
-        let aftermessageSplit = aftermessage.split(' ');
+        let aftermessageSplit = aftermessage.split(', ');
         aftermessageSplit.shift();
         while (aftermessageSplit.length > 4) {
             aftermessageSplit[aftermessageSplit.length - 2] += aftermessageSplit.pop();
