@@ -119,13 +119,13 @@ var welcomeMsgs = [
 ]
 
 var welcomeMsgsEndings = [
-    ' to Loopworld!',
+    ', to Loopworld!',
     '.',
-    ' to the loopity scoop.',
-    ' a new looper!',
-    ' Mr. Looper.',
+    ', to the loopity scoop.',
+    ', a new looper!',
+    ', Mr. Looper.',
     '.',
-    ' new loop recruit.'
+    ', new loop recruit.'
 ]
 
 client.on('guildMemberAdd', member => {
