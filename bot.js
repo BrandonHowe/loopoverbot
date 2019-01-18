@@ -111,8 +111,8 @@ client.on('message', message => {
 var welcomeMsgs = [
     'Welcome ',
     'Welcome to the loopzone, ',
-    'Welcome, to the loopity scoop.',
-    'Welcome new looper.',
+    'Welcome, ',
+    'Welcome, ',
     'Welcome, ',
     'Welcome to the loop, ',
     'Welcome, '
@@ -122,6 +122,7 @@ var welcomeMsgsEndings = [
     ' to Loopworld!',
     '.',
     ' to the loopity scoop.',
+    ' a new looper!',
     ' Mr. Looper.',
     '.',
     ' new loop recruit.'
