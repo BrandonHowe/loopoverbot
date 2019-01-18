@@ -147,6 +147,7 @@ client.on('message', msg => {
         }
     }
     if (msg.content.startsWith(`${prefix}submit`)) {
+        if (msg.channel.id != '535613677139787777') {return;}
         let aftermessage = msg.content.slice(7);
         let aftermessageSplit = aftermessage.split(' ');
         aftermessageSplit.shift();
