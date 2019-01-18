@@ -110,17 +110,26 @@ client.on('message', message => {
 
 var welcomeMsgs = [
     'Welcome to Loopworld!',
-    'Welcome to the loopzone.',
-    'Welcome to the loopity scoop.',
+    'Welcome to the loopzone, ',
+    'Welcome, to the loopity scoop.',
     'Welcome new looper.',
-    'Welcome Mr. Looper.',
-    'Welcome to the loop.',
+    'Welcome, ',
+    'Welcome to the loop, ',
     'Welcome, new loop recruit.'
+]
+
+var welcomeMsgsEndings = [
+    ' to Loopworld!',
+    '.',
+    ' to the loopity scoop.',
+    ' Mr. Looper.',
+    '.',
+    ''
 ]
 
 client.on('guildMemberAdd', member => {
     let randomNum = Math.floor(Math.random() * 5);
-    member.guild.channels.get('526598754791587852').send(welcomeMsgs[randomNum]); 
+    member.guild.channels.get('526598754791587852').send(welcomeMsgs[randomNum] + member + welcomeMsgsEndings[randomNum]); 
 });
 
 client.on('message', msg => {
@@ -147,7 +156,7 @@ client.on('message', msg => {
         }
     }
     if (msg.content.startsWith(`${prefix}submit`)) {
-        if (msg.channel.id != '535613677139787777') {
+        if (msg.channel.id !== '535613677139787777') {
             msg.channel.send("Please post all submissions in the #submit-times-here channel.");
             msg.delete();
             return;
