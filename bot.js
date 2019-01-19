@@ -164,6 +164,10 @@ client.on('guildMemberAdd', member => {
     member.guild.channels.get('526598754791587852').send(welcomeMsgs[randomNum] + member + welcomeMsgsEndings[randomNum]); 
 });
 
+var leaderboards5x5 = '1. ZManGames - 8.100\n2. David Jiang - 9.002\n3. Dawid Wojcik - 9.226\n4. no name guy - 11.772\n5. Carykh - 12.346'
+var leaderboards6x6 = '1. ZManGames - 18.400\n2. Dawid Wojcik - 21.592\n3. David Jiang - 22.239\n4. no name guy - 22.635\n5. Walker Welch - 26.462';
+var leaderboards7x7 = '1. Dawid Wojcik - 36.321\n2. no name guy - 37.316\n3. Tortoise - 38.607\n4. David Jiang - 40.126\n5. Walker Welch - 46.382';
+
 client.on('message', msg => {
     var generateNewDailyChallenge = function() {
         let randomDailyNum = Math.floor(Math.random() * dailyevents.length);
@@ -197,11 +201,11 @@ client.on('message', msg => {
         if (isblank === false) {
             msg.channel.send('Please specify a leaderboard category, such as 5x5, 6x6, or 10x10.')
         } else if (msg.content.startsWith(`${prefix}leaderboards 5x5`)) {
-            msg.channel.send('1. ZManGames - 8.100\n2. David Jiang - 9.002\n3. Dawid Wojcik - 9.226\n4. no name guy - 11.772\n5. Carykh - 12.346');
+            msg.channel.send(leaderboards5x5);
         } else if (msg.content.startsWith(`${prefix}leaderboards 6x6`)) {
-            msg.channel.send('1. ZManGames - 18.400\n2. Dawid Wojcik - 21.592\n3. David Jiang - 22.239\n4. no name guy - 22.635\n5. Walker Welch - 26.462');
+            msg.channel.send(leaderboards6x6);
         } else if (msg.content.startsWith(`${prefix}leaderboards 7x7`)) {
-            msg.channel.send('1. Dawid Wojcik - 36.321\n2. no name guy - 37.316\n3. Tortoise - 38.607\n4. David Jiang - 40.126\n5. Walker Welch - 46.382');
+            msg.channel.send(leaderboards7x7);
         } else {
             msg.channel.send('This category does not exist! (yet)');
         }
