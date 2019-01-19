@@ -94,6 +94,37 @@ function listMajors(auth) {
   });
 }
 
+var dailyevents = [
+    '3x3 blind',
+    '3x3 blind average of 5',
+    '4x4',
+    '4x4 FMC',
+    '4x4 blind',
+    '4x4 blind average of 5',
+    '5x5',
+    '5x5 FMC',
+    '5x5 blind',
+    '6x6',
+    '6x6 FMC',
+    '7x7',
+    '7x7 FMC',
+    '8x8',
+    '9x9',
+    '10x10',
+    '11x11',
+    '12x12',
+    '13x13',
+    '15x15',
+    '20x20',
+    '5x2',
+    '5x4',
+    '8x3',
+    '8x6'
+]
+
+var dailyChallenge = '';
+var lowestDailyScore = 9999;
+
 const Discord = require('discord.js');
 const { prefix, token } = require('./auth.json');
 const client = new Discord.Client();
@@ -134,6 +165,23 @@ client.on('guildMemberAdd', member => {
 });
 
 client.on('message', msg => {
+    var generateNewDailyChallenge = function() {
+        let randomDailyNum = Math.floor(Math.random() * dailyevents.length);
+        dailyChallenge = dailyevents[randomDailyNum];
+        console.log(dailyChallenge);
+        client.channels.get('532371042367438848').send(dailyChallenge);
+    }
+    var getHourCount = function () {
+        var today = new Date().getHours();
+        if (today === 0) {
+            generateNewDailyChallenge();
+        } else {
+            setTimeout(getHourCount, 720000);
+        }
+    }
+    if (msg.content.startsWith(`${prefix}getDaily`)) {
+        getHourCount();
+    }
     mention = msg.mentions.users.first();
     if (msg.content.startsWith(`${prefix}hi`)) {
         msg.channel.send('Why hello there!')
@@ -168,7 +216,7 @@ client.on('message', msg => {
         let aftermessageSplit = aftermessage.split(' ');
         aftermessageSplit.shift();
         while (aftermessageSplit.length > 4) {
-            aftermessageSplit[aftermessageSplit.length - 2] += aftermessageSplit.pop();
+            aftermessageSplit[aftermessageSplit.length - 2] += (' ' + aftermessageSplit.pop());
         }
         console.log(aftermessageSplit);
         if (aftermessageSplit.length >= 4) {
