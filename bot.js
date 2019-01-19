@@ -232,6 +232,28 @@ client.on('message', msg => {
         client.channels.get('535604615295533096').send(sendString);
         msg.delete(2000);
     }
+    let moderatorRole = msg.guild.roles.find(role => role.name === "Leaderboard Moderator");
+    if (msg.content.startsWith(`${prefix}update`)) {
+        let afterMessageUpdate = msg.content.slice(8);
+        let afterMessageUpdateSplit = afterMessageUpdate.split('|');
+        console.log(afterMessageUpdateSplit);
+        if(msg.member.roles.has(moderatorRole.id)) {
+            switch (afterMessageUpdateSplit[0]) {
+                case '5x5':
+                    leaderboards5x5 = afterMessageUpdateSplit[1];
+                    console.log(leaderboards5x5);
+                    break;
+                case '6x6':
+                    leaderboards6x6 = afterMessageUpdateSplit[1];
+                    break;
+                case '7x7':
+                    leaderboards7x7 = afterMessageUpdateSplit[1];
+                    break;
+            }
+          } else {
+            msg.channel.send("You're not a leaderboard moderator!")
+          }
+    }
 });
 
 client.login(token);
