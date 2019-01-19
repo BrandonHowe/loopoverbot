@@ -177,7 +177,7 @@ client.on('message', msg => {
     }
     var getHourCount = function () {
         var today = new Date().getHours();
-        if (today === 0) {
+        if (today % 2 === 0) {
             generateNewDailyChallenge();
         } else {
             setTimeout(getHourCount, 720000);
