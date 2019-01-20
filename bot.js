@@ -173,7 +173,7 @@ client.on('message', msg => {
         let randomDailyNum = Math.floor(Math.random() * dailyevents.length);
         dailyChallenge = dailyevents[randomDailyNum];
         console.log(dailyChallenge);
-        client.channels.get('532371042367438848').send(dailyChallenge);
+        client.channels.get('535570707543752705').send(dailyChallenge);
     }
     var getHourCount = function () {
         var today = new Date().getHours();
