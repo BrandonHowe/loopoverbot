@@ -175,12 +175,19 @@ client.on('message', msg => {
         console.log(dailyChallenge);
         client.channels.get('535570707543752705').send(dailyChallenge);
     }
+    var convertEST = function (hour) {
+        if (hour - 5 >= 0) {
+            return hour - 5;
+        } else {
+            return hour + 17;
+        }
+    }
     var getHourCount = function () {
         var todayDate = new Date();
         console.log(todayDate);
         var todayHours = new Date().getHours();
         console.log(todayHours);
-        if (todayHours % 2 === 0) {
+        if (convertEST(todayHours) % 2 === 0) {
             generateNewDailyChallenge();
             setTimeout(getHourCount, 720000);
         } else {
