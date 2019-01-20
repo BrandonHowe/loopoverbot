@@ -179,7 +179,7 @@ client.on('message', msg => {
         if (hour - 5 >= 0) {
             return hour - 5;
         } else {
-            return hour + 17;
+            return hour + 19;
         }
     }
     var getHourCount = function () {
