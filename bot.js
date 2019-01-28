@@ -262,6 +262,8 @@ client.on('message', msg => {
         console.log(afterMessageUpdateSplit);
         if(msg.member.roles.has(moderatorRole.id)) {
             switch (afterMessageUpdateSplit[0]) {
+                case '4x4':
+                    leaderboards4x4 = afterMessageUpdateSplit[1];
                 case '5x5':
                     leaderboards5x5 = afterMessageUpdateSplit[1];
                     console.log(leaderboards5x5);
@@ -271,6 +273,15 @@ client.on('message', msg => {
                     break;
                 case '7x7':
                     leaderboards7x7 = afterMessageUpdateSplit[1];
+                    break;
+                case '8x8':
+                    leaderboards8x8 = afterMessageUpdateSplit[1];
+                    break;
+                case '9x9':
+                    leaderboards9x9 = afterMessageUpdateSplit[1];
+                    break;
+                case '10x10':
+                    leaderboards10x10 = afterMessageUpdateSplit[1];
                     break;
             }
           } else {
