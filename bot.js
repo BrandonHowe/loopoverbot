@@ -201,6 +201,16 @@ client.on('message', msg => {
     if (msg.content.startsWith(`${prefix}help`)) {
         msg.channel.send("Hello! I am the Loopover Bot, created by Leaderboard Moderator ImperialWaffle. If you have a suggestion, please ping him in <#532371042367438848>!\nCommands:\n!help: Displays this message. Not sure why you need to know this if you're reading this message.\n!hi: Says hello.\n!leaderboards: Shows the top 5 in a few categories, but severely out of date.\n!getDaily: Debug for daily challenges, which are coming soon.\n!submit: Used to submit times to the leaderboard moderators for review. Submit rules are in <#535613677139787777>.")
     }
+    if (msg.content.startsWith(`${prefix}mps`)) {
+        let aftermessage = msg.content.slice(4);
+        let aftermessageSplit = aftermessage.split(' ');
+        aftermessageSplit.shift();
+        let moves = aftermessageSplit[0] - 1;
+        let seconds = aftermessageSplit[1];
+        let mps = moves / seconds;
+        mps = mps.toFixed(2);
+        msg.channel.send("Your moves per second (MPS) was: " + mps + ".");
+    }
     if (msg.content.startsWith(`${prefix}getDaily`)) {
         getHourCount();
     }
