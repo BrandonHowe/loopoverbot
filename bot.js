@@ -165,7 +165,7 @@ client.on('guildMemberAdd', member => {
 });
 
 var leaderboards4x4 = 'This category does not exist! (yet)';
-var leaderboards5x5 = '1. ZManGames - 8.100\n2. David Jiang - 9.002\n3. Dawid Wojcik - 9.226\n4. no name guy - 11.772\n5. Carykh - 12.346'
+var leaderboards5x5 = 'ZManGames - 7.653\nDawid Wojcik - 7.966\nDavid Jiang - 8.701\nno name guy - 9.445\nSankey r3 - 9.773';
 var leaderboards6x6 = '1. ZManGames - 18.400\n2. Dawid Wojcik - 21.592\n3. David Jiang - 22.239\n4. no name guy - 22.635\n5. Walker Welch - 26.462';
 var leaderboards7x7 = '1. Dawid Wojcik - 36.321\n2. no name guy - 37.316\n3. Tortoise - 38.607\n4. David Jiang - 40.126\n5. Walker Welch - 46.382';
 var leaderboards8x8 = 'This category does not exist! (yet)';
@@ -197,6 +197,9 @@ client.on('message', msg => {
         } else {
             setTimeout(getHourCount, 720000);
         }
+    }
+    if (msg.content.startsWith(`${prefix}help`)) {
+        msg.channel.send("Hello! I am the Loopover Bot, created by Leaderboard Moderator ImperialWaffle. If you have a suggestion, please ping him in #research-and-programming!\nCommands:\n!help: Displays this message. Not sure why you need to know this if you're reading this message.\n!hi: Says hello.\n!leaderboards: Shows the top 5 in a few categories, but severely out of date.\n!getDaily: Debug for daily challenges, which are coming soon.\n!submit: Used to submit times to the leaderboard moderators for review. Submit rules are in #submit-times-here.")
     }
     if (msg.content.startsWith(`${prefix}getDaily`)) {
         getHourCount();
