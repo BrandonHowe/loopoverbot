@@ -199,7 +199,7 @@ client.on('message', msg => {
         }
     }
     if (msg.content.startsWith(`${prefix}help`)) {
-        msg.channel.send("Hello! I am the Loopover Bot, created by Leaderboard Moderator ImperialWaffle. If you have a suggestion, please ping him in <#532371042367438848>!\nCommands:\n!help: Displays this message. Not sure why you need to know this if you're reading this message.\n!hi: Says hello.\n!leaderboards: Shows the top 5 in a few categories, but severely out of date.\n!getDaily: Debug for daily challenges, which are coming soon.\n!submit: Used to submit times to the leaderboard moderators for review. Submit rules are in <#535613677139787777>.")
+        msg.channel.send("Hello! I am the Loopover Bot, created by Leaderboard Moderator ImperialWaffle. If you have a suggestion, please ping him in <#532371042367438848>!\nCommands:\n!help: Displays this message. Not sure why you need to know this if you're reading this message.\n!hi: Says hello.\n!leaderboards: Shows the top 5 in a few categories, but severely out of date.\n!getDaily: Debug for daily challenges, which are coming soon.\n!mps: A moves per second counter. Use !mps movecount time. e.g.: !mps 31 24.696\n!submit: Used to submit times to the leaderboard moderators for review.\nHow to use !submit: !submit category time evidence_link custom name. e.g.: !submit 5x5single 69.420 discordlink.mov imperial waffle")
     }
     if (msg.content.startsWith(`${prefix}mps`)) {
         let aftermessage = msg.content.slice(4);
