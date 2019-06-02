@@ -95,35 +95,44 @@ function listMajors(auth) {
 }
 
 var dailyevents = [
-    '3x3 blind',
-    '3x3 blind average of 5',
-    '4x4',
-    '4x4 FMC',
-    '4x4 blind',
-    '4x4 blind average of 5',
-    '5x5',
-    '5x5 FMC',
-    '5x5 blind',
-    '6x6',
-    '6x6 FMC',
-    '7x7',
-    '7x7 FMC',
-    '8x8',
-    '9x9',
-    '10x10',
-    '11x11',
-    '12x12',
-    '13x13',
-    '15x15',
-    '20x20',
-    '5x2',
-    '5x4',
-    '8x3',
-    '8x6'
+    regular = [
+        '4x4',
+        '4x4 average of 5',
+        '5x5',
+        '5x5 average of 5',
+        '6x6',
+        '7x7',
+        '8x8',
+        '9x9',
+        '10x10'
+    ],
+    bonus = [
+        '5x2',
+        '5x4',
+        '8x3',
+        '8x6',
+        '20x2',
+        '4x4 FMC',
+        '5x5 FMC',
+        '6x6 FMC',
+        '7x7 FMC',
+        '3x3 blind'
+    ],
+    challenge = [
+        '4x4 blind',
+        '11x11',
+        '12x12',
+        '13x13',
+        '15x15',
+        '20x20',
+        '4x4 no regrips',
+        '5x5 no regrips'
+    ]
 ]
 
 var dailyChallenge = '';
 var lowestDailyScore = 9999;
+let dailyIteration = 1;
 
 const Discord = require('discord.js');
 const { prefix, token } = require('./auth.json');
@@ -131,6 +140,7 @@ const client = new Discord.Client();
  
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
+  client.channels.get('535570707543752705').send('!getDaily');
 });
 
 client.on('message', message => {
@@ -175,9 +185,14 @@ var leaderboards10x10 = 'This category does not exist! (yet)';
 client.on('message', msg => {
     var generateNewDailyChallenge = function() {
         let randomDailyNum = Math.floor(Math.random() * dailyevents.length);
-        dailyChallenge = dailyevents[randomDailyNum];
+        if (todayDay === 0) {
+            var dailyChallenge = "Events for the next 3 days (until Wednesday): **" + dailyevents[0][dailyIteration % dailyevents[0].length] + "**, **" + dailyevents[1][dailyIteration % dailyevents[1].length] + "**, and **" + dailyevents[2][dailyIteration % dailyevents[2].length] + "**.\nNext week's events are: " + dailyevents[0][(dailyIteration + 1) % 9] + ", " + dailyevents[1][(dailyIteration + 1) % 10] + ", and " + dailyevents[2][(dailyIteration + 1) % 8];
+        } else if (todayDay === 3) {
+            var dailyChallenge = "Events for the next 4 days (until Sunday): **" + dailyevents[0][dailyIteration % dailyevents[0].length] + "**, **" + dailyevents[1][dailyIteration % dailyevents[1].length] + "**, and **" + dailyevents[2][dailyIteration % dailyevents[2].length] + "**.\nNext week's events are: " + dailyevents[0][(dailyIteration + 1) % 9] + ", " + dailyevents[1][(dailyIteration + 1) % 10] + ", and " + dailyevents[2][(dailyIteration + 1) % 8];
+        }
         console.log(dailyChallenge);
         client.channels.get('535570707543752705').send(dailyChallenge);
+        dailyIteration++;
     }
     var convertEST = function (hour) {
         if (hour - 5 >= 0) {
@@ -190,12 +205,18 @@ client.on('message', msg => {
         var todayDate = new Date();
         console.log(todayDate);
         var todayHours = new Date().getHours();
+        // var todaySeconds = new Date().getSeconds();
+        var todayDay = new Date().getDay();
         console.log(todayHours);
-        if (todayHours === 0) {
+        // console.log(todaySeconds);
+        if (todayHours === 0 && (todayDay === 0 || todayDay === 3)) {
+        // if (todaySeconds === 0) {
             generateNewDailyChallenge();
             setTimeout(getHourCount, 720000);
+            // setTimeout(getHourCount, 1000);
         } else {
             setTimeout(getHourCount, 720000);
+            // setTimeout(getHourCount, 1000);
         }
     }
     if (msg.content.startsWith(`${prefix}help`)) {
@@ -247,10 +268,12 @@ client.on('message', msg => {
         }
     }
     if (msg.content.startsWith(`${prefix}submit`)) {
-        if (msg.channel.id !== '535613677139787777') {
-            msg.channel.send("Please post all submissions in the #submit-times-here channel.");
-            msg.delete();
-            return;
+        if (msg.channel.id != '535613677139787777') {
+            if (msg.channel.id != '583765004000559116') {
+                msg.channel.send("Please post all submissions in the #submit-times-here channel.");
+                msg.delete();
+                return;
+            }
         }
         let aftermessage = msg.content.slice(7);
         let aftermessageSplit = aftermessage.split(' ');
@@ -260,10 +283,14 @@ client.on('message', msg => {
         }
         console.log(aftermessageSplit);
         if (aftermessageSplit.length >= 4) {
-            var sendString = "Category: **" + aftermessageSplit[0] + "**\nTime: **" + aftermessageSplit[1] + "**\nCustom name: **" + aftermessageSplit[3] + "**\nEvidence: " + aftermessageSplit[2];
-            console.log(sendString);
+            if (msg.channel.id === '535613677139787777') {
+                var sendString = "Category: **" + aftermessageSplit[0] + "**\nTime: **" + aftermessageSplit[1] + "**\nCustom name: **" + aftermessageSplit[3] + "**\nEvidence: " + aftermessageSplit[2];
+            } else if (msg.channel.id === '583765004000559116') {
+                var sendString = "**Bi-weekly challenge submission**\nCategory: **" + aftermessageSplit[0] + "**\nTime: **" + aftermessageSplit[1] + "**\nCustom name: **" + aftermessageSplit[3] + "**\nEvidence: " + aftermessageSplit[2];
+            }
+                console.log(sendString);
         } else {
-            msg.channel.send("You need to provide a link for your evidence!")
+            msg.channel.send("Please review the !submit format.")
         }
         client.channels.get('535604615295533096').send(sendString);
         msg.delete(2000);
