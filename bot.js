@@ -130,6 +130,8 @@ var dailyevents = [
     ]
 ]
 
+//cool
+
 var dailyChallenge = '';
 var lowestDailyScore = 9999;
 let dailyIteration = 1;
