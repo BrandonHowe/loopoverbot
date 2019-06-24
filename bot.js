@@ -142,6 +142,7 @@ const client = new Discord.Client();
  
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
+  bot.user.setGame("Loopover");
   client.channels.get('535570707543752705').send('!getDaily');
 });
 
@@ -226,6 +227,9 @@ client.on('message', msg => {
     }
     if (msg.content === ("what's poppin m'bot")) {
         msg.channel.send("nothin much my fam");
+    }
+    if (msg.content === ("wuts poppin me bot")) {
+        msg.channel.send("nothin");
     }
     if (msg.content.startsWith(`${prefix}mps`)) {
         let aftermessage = msg.content.slice(4);
