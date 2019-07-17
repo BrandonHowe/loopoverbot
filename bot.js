@@ -142,8 +142,8 @@ const client = new Discord.Client();
  
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-  client.user.setGame("Loopover");
-  client.channels.get('535570707543752705').send('!getDaily');
+  client.user.setPresence({ status: 'online', game: { name: 'Triooper' } });
+//   client.channels.get('535570707543752705').send('!getDaily');
 });
 
 client.on('message', message => {
@@ -171,6 +171,8 @@ var welcomeMsgsEndings = [
     '.',
     ', new loop recruit.'
 ]
+
+var welcomeMsgInfo = "\nThanks for joining the Loopover Discord. Before you begin chatting, there are a few resources we'd like to talk about first!\nThe leaderboards - https://docs.google.com/spreadsheets/d/16_r9a59ybKLbNmW1j88USwDS82bLHeUBFy3ifOO-KEk/edit#gid=1316420609\nThe leaderboards are where everyone's personal bests are displayed, assuming that their times are legitimate. You can also access links to a multitude of loopover sites.\nThe Loopover Bot - The Loopover Bot has a multitude of commands which can be accessed with !help.\nPlease remember to follow the rules. We have had an almost spotless history of rule-following, and we want it to stay that way!"
 
 client.on('guildMemberAdd', member => {
     let randomNum = Math.floor(Math.random() * 5);
@@ -225,12 +227,6 @@ client.on('message', msg => {
     if (msg.content.startsWith(`${prefix}help`)) {
         msg.channel.send("Hello! I am the Loopover Bot, created by Leaderboard Moderator ImperialWaffle. If you have a suggestion, please ping him in <#532371042367438848>!\nCommands:\n!help: Displays this message. Not sure why you need to know this if you're reading this message.\n!hi: Says hello.\n!leaderboards: Shows the top 5 in a few categories, but severely out of date.\n!getDaily: Debug for daily challenges, which are coming soon.\n!mps: A moves per second counter. Use !mps movecount time. e.g.: !mps 31 24.696\n!submit: Used to submit times to the leaderboard moderators for review.\nHow to use !submit: !submit category time evidence_link custom name. e.g.: !submit 5x5single 69.420 discordlink.mov imperial waffle")
     }
-    if (msg.content === ("what's poppin m'bot")) {
-        msg.channel.send("nothin much my fam");
-    }
-    if (msg.content === ("wuts poppin me bot")) {
-        msg.channel.send("nothin");
-    }
     if (msg.content.startsWith(`${prefix}mps`)) {
         let aftermessage = msg.content.slice(4);
         let aftermessageSplit = aftermessage.split(' ');
@@ -247,6 +243,30 @@ client.on('message', msg => {
     mention = msg.mentions.users.first();
     if (msg.content.startsWith(`${prefix}hi`)) {
         msg.channel.send('Why hello there!')
+    }
+    if (msg.content === "yo bot, what do you think of triooper") {
+        msg.channel.send("it's pretty cool, i like it")
+    }
+    if (msg.content.startsWith("hey bot, whats your gender") || msg.content === "yo bot, what's your gender") {
+        msg.channel.send("i am estonian")
+    }
+    if (msg.content === "hey bot, what do you think of triooper") {
+        msg.channel.send("it's pretty cool, i like it")
+    }
+    if (msg.content === "yo bot, do you have a name") {
+        msg.channel.send("well my name is the Loopover Bot on here, but before i was sentenced to live in this form, my name was Robert. i lived a pretty good life, but one day my head got stuck on a pike and then i was sentenced to this form so yeah it kinda sucks but whatever. :shrug:")
+    }
+    if (msg.content.startsWith("yo bot, do you feel emotions")) {
+        msg.channel.send("i'm not sure what emotions are anymore tbh. i used to feel them back when i was robert but i dont really remember what they are now. sorta like when you try to remember what you did as a kid and you only remember what you did but you don't have any memories of it. that sucks balls. i mean i guess i can feel hurt or something if i try hard enough maybe but i just live this life here and i don't feel anything, i'm content i guess so yeah do i feel contentness idk")
+    }
+    if (msg.content.startsWith("yo bot, are you a virgin")) {
+        msg.channel.send("no ofc i am not a virgin at least not in my robert form i got all the pussy man multiple times a week id just come home and thered be a smoking hot woman in the house. granted i prolly was stealing money from my dad cus he was blowing all of his money on hookers and shit but yknow i got the pussy and thats what counts. in this bot form... yeah i dont think bots have gender so yknow i dont get any pussy :frowning:")
+    }
+    if (msg.content.startsWith("yo bot, what is your loopover personal best")) {
+        msg.channel.send("6.969 seconds lmaooooo")
+    }
+    if (msg.content.startsWith("yo bot, go die") || msg.content.startsWith("yo bot, go kill yourself") || msg.content.startsWith("yo bot, commit suicide")) {
+        msg.channel.send("dude i literally cant die, im a bot lmaoooo")
     }
     if (msg.content.startsWith(`${prefix}leaderboards`)) {
         let aftermessage = msg.content.slice(13);
