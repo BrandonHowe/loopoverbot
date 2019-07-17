@@ -142,7 +142,7 @@ const client = new Discord.Client();
  
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-  client.user.setPresence({ status: 'online', game: { name: 'Triooper' } });
+  client.user.setPresence({ status: 'online', game: { name: 'Loopover' } });
 //   client.channels.get('535570707543752705').send('!getDaily');
 });
 
